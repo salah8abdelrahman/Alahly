@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+
+    .map-box {
+      position: absolute;
+      text-align: center;
+      font-family: arimo;
+      font-size: 13px;
+      z-index: 5;
+      box-shadow: 0 4px 6px -4px #333;
+      padding: 5px 10px;
+      background: rgb(255, 255, 255);
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(245, 245, 245, 1) 100%);
+      border: rgb(229, 229, 229) 1px solid;
+    }
+
+    #data-label1 {
+      color: #4F00EF;
+    }
+
+  </style>
+</head>
+<body>
+<div id="data-box" class="map-box">
+  <a target="_blank" id="data-label">
+    <span id="data-label1"></span>
+  </a>
+  <br/>
+  <!--  <span id="data-label3"></span>-->
+  <!--  <br/>-->
+  <!--  <span id="data-label4"></span>-->
+  <!--  <br/>-->
+  <a id="phone"></a>
+</div>
+<div id="map"></div>
+<script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 7,
+      center: {lat: 29.9834527629537, lng: 31.32177816046276}
+    });
+    var markers = locations.map(function (location, i) {
+      var marker = new google.maps.Marker({
+        position: location[0],
+        animation: google.maps.Animation.DROP,
+      });
+      marker.addListener('click', function () {
+        document.getElementById('data-label1').textContent = data[i][0];
+        document.getElementById('data-label').href = location[1];
+        // document.getElementById('data-label3').textContent = data[i][2];
+        // document.getElementById('data-label4').textContent = data[i][3];
+        document.getElementById('phone').textContent = data[i][1];
+        // document.getElementById('email').href = 'mailto: ' + location[1];
+        document.getElementById('data-box').style.display = 'block';
+      });
+      return marker;
+    });
+    // Add a marker clustered to manage the markers.
+    const markerCluster = new MarkerClusterer(map, markers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+  }
+
+
+  const locations = [
+    //1
+    [{lat: 30.0591177734778, lng: 31.34520842455123}, 'https://goo.gl/maps/nnRunmTCgqhLY3K47'],
+    //2
+    [{lat: 30.054369540900254, lng: 31.34489471102212}, 'https://goo.gl/maps/zkLabsVDwukwSwMS6'],
+    //3
+    [{lat: 30.061388067304943, lng: 31.20057948403452}, 'https://goo.gl/maps/Q47spDjSKTgkxh2W7'],
+    //4
+    [{lat: 31.06158121576338, lng: 31.402375706058237}, 'https://goo.gl/maps/xiLwC1L3LAJWJfCD6'],
+    //5
+    [{lat: 30.065670487849523, lng: 31.19762880917459}, 'https://goo.gl/maps/q4rWAppSriSCRFbC9'],
+    //6
+    [{lat: 28.493822738121995, lng: 30.80619409749874}, 'https://goo.gl/maps/kKbyVhwd8LnfpfyZA'],
+    //7
+    [{lat: 30.015553391824046, lng: 31.280346138008916}, 'https://goo.gl/maps/td27DzUvUicZrjWR8'],
+    //8
+    [{lat: 29.960861040377207, lng: 30.920367943551085}, 'https://goo.gl/maps/7nf2FZvu8sQw12wB8'],
+    //9
+    [{lat: 29.30502938319722, lng: 30.845116638076885}, 'https://goo.gl/maps/8r12n1eBxezxtxWT7'],
+    //10
+    [{lat: 30.584409583045048, lng: 31.489545405489167}, 'https://goo.gl/maps/P8f35M8fGjYCTvfD7'],
+    //11
+    [{lat: 31.419097290400263, lng: 31.81433430693308}, 'https://goo.gl/maps/3j7ScgC9UrNwkr5P7'],
+    //12
+    [{lat: 30.721702809852587, lng: 31.25293562084375}, 'https://goo.gl/maps/Dd469CvfwAWJBwgb8'],
+    //13
+    [{lat: 30.57087111992578, lng: 31.006088668702997}, 'https://goo.gl/maps/Dd469CvfwAWJBwgb8'],
+    //14
+    [{lat: 25.700178543846576, lng: 32.63983887046258}, ' https://goo.gl/maps/VNxw8ALM4K3BitC2A'],
+    //15
+    [{lat: 26.551170371969175, lng: 31.699360302448177}, 'https://goo.gl/maps/kUn4fs2cqM58LmZJ9'],
+    //16
+    [{lat: 26.158984752204162, lng: 32.72159206862234}, ' https://goo.gl/maps/mmmJmZkEsEF6UE2aA'],
+    //17
+    [{lat: 24.08949044538579, lng: 32.89403958650512}, 'https://goo.gl/maps/JCiUieCsmLMCd6qW9'],
+    //18
+    [{lat: 31.197687029722037, lng: 29.898321374258742}, 'https://goo.gl/maps/A1iiQ4kYuVw1CMGB6'],
+    //19
+    [{lat: 28.098738829029216, lng: 30.754911369384377}, 'https://goo.gl/maps/Ybzpbp3vM2fPCpsj6'],
+    //20
+    [{lat: 27.179105127922735, lng: 31.186103892054398}, 'https://goo.gl/maps/erbNeJXnHeEwEJZU8'],
+    //21
+    [{lat: 30.795861365133646, lng: 30.998067754654155}, 'https://goo.gl/maps/PdpFx9aTnac5C8FP7'],
+    //22
+    [{lat: 27.19794301933311, lng: 33.849233691206024}, 'https://goo.gl/maps/LdxCjE2aD29eDqri9'],
+    //23
+    [{lat: 31.11485349992343, lng: 30.939239268713926}, 'https://goo.gl/maps/cnBkmGAT6c5R8FEFA'],
+    //24
+    [{lat:30.470382630619234,  lng: 31.185511704861295}, 'https://goo.gl/maps/DGbb1M5D2bg5qVNX6'],
+    //25
+    [{lat:29.07624372035144,  lng: 31.185511704861295}, 'https://goo.gl/maps/w8miKCC6eHXanC7E9'],
+    //26
+    [{lat:26.04993363922821,  lng: 32.240960869116314}, 'https://goo.gl/maps/u8dARaTZ6Ytv1Qh37'],
+    //27
+    [{lat:29.975304663427423,  lng: 31.27982886684358}, 'https://goo.gl/maps/9VsBSVFGTbsHzoXN7'],
+    //28
+    [{lat:29.975304663427423,  lng: 31.27982886684358}, 'https://goo.gl/maps/373xp8n8VLmcnvoW7'],
+
+  ];
+
+
+  const data = [
+    //1
+    ["Address:36 شارع مكرم عبيد-مدينة نصر-القاهرة ", "Tel:  02-22715614"],
+    //2
+    ["Address:43 شارع مصطفى النحاس-مدينة نصر-القاهرة ", "Tel: 02-22715578"],
+    //3
+    ["Address:6 شارع وادي النيل-المهندسين-الجيزة", "Tel:  02-33478054"],
+    //4
+    ["Address: 21 شارع سعد زغلول-توريل-المنصورة-الدقهلية", "Tel: 050-2303611"],
+    //5
+    ["Address: 15 شارع احمد عرابي-المهندسين-الجيزة", "Tel: 02-33451013"],
+    //6
+    ["Address:10,12 شارع الابراهيمية-بني مزار-المنيا", "Tel:  011-02486060"],
+    //7
+    ["Address: 6 قطعة353 محل رقم 23,22 ميدان النافورة-المقطم-القاهرة ", "Tel: 02-28450350"],
+    //8
+    ["Address:  24 بالدور الاول فوق الارضي-مجمع ماجدة للفنون-اكتوبر-الجيزة", "Tel: 02-38350078"],
+    //9
+    ["Address:رقمي 7/4 الدور الارضي برج الجمعية التعاونية للانشاء والتعمير-شارع جمال عبد الناصر-بندر الفيوم", "Tel: 084-2178457"],
+    //10
+    ["Address:  2 شارع سعد زغلول امام كوبري المحافظة-قسم منشاة اباظة-بندر اول الزقازيق-الشرقية", "Tel:055-2313129"],
+    //11
+    ["Address: 65 شارع الجلاء الدور الارضي-دمياط", "Tel:  057-2204789"],
+    //12
+    ["Address: 41 الكائن باحمد عرابي شارع الجيش-بندر ميت غمر-الدقهلية", "Tel:  050-4903787"],
+    //13
+    ["Address:شارع داير الناحية 4شارع حتحوت-المنوفية", "Tel:  048-2233299"],
+    //14
+    ["Address:32 شارع نعبد الاقصر-امام مسجد ابو حجاج-الاقصر", "Tel:  095-2254378"],
+    //15
+    ["Address:3 بجوار المدخل بالعقار رقم2شارع مدرسة بسطا امام محطة السكة الحديد-سوهاج", "Tel: 093-2344244"],
+    //16
+    ["Address:1 شارع 23يوليو المدير سابقا-بندر قنا", "Tel:096-3330596"],
+    //17
+    ["Address:مبنى البنك الاهلي بشارع الكورنيش-اسوان", "Tel:097-2465068"],
+    //18
+    ["Address:11 شارع سيزوستريس-قسم العطارين-الاسكندرية", "Tel:03-4857238"],
+    //19
+    ["Address:5 شارع السلطان حسين كامل سابقا والجمهورية حاليا-بندر المنيا", "Tel:086-2336050"],
+    //20
+    ["Address: مبنى البنك الاهلي القديم-شارع سعد زغلول-اسيوط", "Tel:088-2341649"],
+    //21
+    ["Address: 54 شارع الجيش حي اول مدينة طنطا-الدقهلية", "Tel:040-3340819"],
+    //22
+    ["Address: شارع شيراتون ميدان العروسة امام السوق التجاري-الغردقة", "Tel:065-3452389"],
+    //23
+    ["Address:6 الكائن بشارع الخلفاء الراشدين-بندر اول كفر الشيخ", "Tel:047-3230564"],
+    //24
+    ["Address:العقار رقم 5 شارع فريد ندا-بندر بنها-القليوبية", "Tel:013-3220083"],
+    //25
+    ["Address:15 شارع محمد حميدة-بندر بني سويف", "Tel:082-2154002"],
+    //26
+    ["Address:العقار رقم 8 شارع حسني مبارك-نجع حمادي-قنا", "Tel:096-2598198"],
+    //27
+    ["Address:43 شارع النصر-المعادي الجديدة-قسم البساتين-القاهرة", "Tel:02-27544845"],
+    //28
+    ["Address:شارع الحرية امام المزلقان-مدينة جرجا-سوهاج", "Tel:093-4665198"],
+
+  ];
+</script>
+<script
+  src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4PMAwxzv8l1_uatofzsCV-RM1Is0RDuw&callback=initMap&sensor=false"
+        type="text/javascript"></script>
+</body>
+</html>
